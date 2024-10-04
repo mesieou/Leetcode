@@ -1,43 +1,29 @@
+from collections import deque
+class MyStack:
 
-var MyStack = function() {
-    this.queue = [];
-};
+    def __init__(self):
+        self.queue = deque([])
+        
 
-/** 
- * @param {number} x
- * @return {void}
- */
-MyStack.prototype.push = function(x) {
-    this.queue.push(x);
-};
+    def push(self, x: int) -> None:
+        self.queue.append(x)
+        
 
-/**
- * @return {number}
- */
-MyStack.prototype.pop = function() {
-    return this.queue.pop()  
-};
+    def pop(self) -> int:
+        return self.queue.pop()
 
-/**
- * @return {number}
- */
-MyStack.prototype.top = function() {
-    return this.queue[this.queue.length - 1];
-    
-};
+    def top(self) -> int:
+        return self.queue[-1]
+        
 
-/**
- * @return {boolean}
- */
-MyStack.prototype.empty = function() {
-    return this.queue.length == 0;
-};
+    def empty(self) -> bool:
+        return len(self.queue) == 0
+        
 
-/** 
- * Your MyStack object will be instantiated and called as such:
- * var obj = new MyStack()
- * obj.push(x)
- * var param_2 = obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.empty()
- */
+
+# Your MyStack object will be instantiated and called as such:
+# obj = MyStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.empty()
