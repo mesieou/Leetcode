@@ -2,50 +2,26 @@
  * @param {string} senate
  * @return {string}
  */
-var predictPartyVictory = function (senate) {
+var predictPartyVictory = function(senate) {
+    let r = [];
+    let d = [];
+    let rIndex = 0;
+    let dIndex = 0;
 
-    let banRadiant = 0;
-    let banDire = 0;
-    let input = senate.split("");
-    let hasRadiant = true;
-    let hasDire = true;
-    while (hasRadiant && hasDire) {
-        hasRadiant = false;
-        hasDire = false;
-
-        for (i = 0; i < input.length; i++) {
-
-            if (input[i] == 'R') {
-                if (banRadiant == 0) {
-                    hasRadiant = true;
-                    banDire++
-
-                } else {
-                    banRadiant--
-                    input[i] = 0;
-                }
-            } else if (input[i] == 'D') {
-                if (banDire <= 0) {
-                    hasDire = true;
-                    //  Dire.push(true)
-                    banRadiant++
-                } else {
-                    //banDire = Math.min(0,)
-                    input[i] = 0;
-                    banDire--
-                }
-
-
-            }
-            else {
-                continue;
-            }
-
-
+    for(let i = 0; i < senate.length; i++){
+        senate[i] == "R" ? r.push(i) : d.push(i);
+    }
+    
+    while( rIndex < r.length && dIndex < d.length){
+        if (r[rIndex] < d[dIndex]){
+            r.push(r[rIndex] + senate.length);
+        } else {
+            d.push(d[dIndex] + senate.length);
         }
 
-
+        rIndex++;
+        dIndex++;
     }
-    return hasDire ? 'Dire' : 'Radiant'
-
+    
+    return rIndex < r.length ? 'Radiant' : 'Dire'
 };
